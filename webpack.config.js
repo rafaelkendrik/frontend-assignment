@@ -89,7 +89,7 @@ module.exports = {
       filename: isProduction() ? 'assets/style.[contenthash].css' : 'assets/style.css'
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.pug'
+      template: 'index.pug'
     }),
     new webpack.DefinePlugin({
       'process.env': {
