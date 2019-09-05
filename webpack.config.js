@@ -21,16 +21,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Router: path.resolve(__dirname, 'src', 'router'),
-      Store: path.resolve(__dirname, 'src', 'store'),
-      Pages: path.resolve(__dirname, 'src', 'pages'),
-      Components: path.resolve(__dirname, 'src', 'components'),
-      Directives: path.resolve(__dirname, 'src', 'directives'),
-      Filters: path.resolve(__dirname, 'src', 'filters'),
-      Images: path.resolve(__dirname, 'src', 'images'),
-      Styles: path.resolve(__dirname, 'src', 'styles'),
-      Plugins: path.resolve(__dirname, 'src', 'plugins'),
-      Mixins: path.resolve(__dirname, 'src', 'mixins')
+      '@': path.resolve('src')
     }
   },
   entry: path.resolve(__dirname, 'src', 'index.js'),
@@ -108,12 +99,16 @@ module.exports = {
         WEB_APP_URL: JSON.stringify(process.env.WEB_APP_URL),
       }
     }),
+    /*
+     * TODO: Create Dist folder
+     *
     new CopyWebpackPlugin([
       {
         from: 'src/images',
         to: 'assets/images'
       },
     ]),
+     */
   ]
 };
 
