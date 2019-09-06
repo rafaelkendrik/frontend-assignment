@@ -26,10 +26,10 @@ module.exports = {
     },
     extensions: ['.js', '.vue', '.json']
   },
-  entry: path.resolve(__dirname, 'src', 'index.js'),
+  entry: path.resolve(__dirname, 'src', 'main.js'),
   output: {
     filename: isProduction() ? 'assets/main.[contenthash].js' : 'assets/main.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
   module: {
@@ -48,8 +48,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader'
       },
-      {
-        test: /\.js$/,
+      { test: /\.js$/,
         loader: 'babel-loader',
         exclude: function (file) {
           return /node_modules/.test(file) && !/\.vue\.js/.test(file);
@@ -82,6 +81,9 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+    historyApiFallback: { disableDotRule: true }
+  },
   plugins: [
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
@@ -98,16 +100,12 @@ module.exports = {
         WEB_APP_URL: JSON.stringify(process.env.WEB_APP_URL),
       }
     }),
-    /*
-     * TODO: Create Dist folder
-     *
     new CopyWebpackPlugin([
       {
-        from: 'src/images',
-        to: 'assets/images'
+        from: 'src/assets/images',
+        to: 'dist/assets/images'
       },
-    ]),
-     */
+    ])
   ]
 };
 

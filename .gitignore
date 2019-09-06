@@ -1,7 +1,8 @@
 .DS_Store
 *.log
+*.swp
 node_modules/
-build/
+dist/
 .vscode
 .env
 package-lock.json
