@@ -1,0 +1,40 @@
+@mixin ui--all-transition ($time: 250ms) {
+  transition: all $time ease-out;
+}
+
+@mixin ui--cont-border (
+  $size: 0.025rem,
+  $direction: null,
+  $color: $cont-color--default
+) {
+  $border: $size solid $color;
+
+  @if $direction {
+    border-#{$direction}: $border;
+  } @else {
+    border: $border;
+  }
+}
+
+@mixin ui--cont-radius (
+  $radius: $cont-radius--default,
+  $direction: null
+) {
+  @if $direction {
+    @if $direction == 'bottom' {
+      border-bottom-left-radius: $radius;
+      border-bottom-right-radius: $radius;
+    } @else if $direction == 'top' {
+      border-top-left-radius: $radius;
+      border-top-right-radius: $radius;
+    } @else {
+      border-#{$direction}-radius: $radius;
+    }
+  } @else {
+    border-radius: $radius;
+  }
+}
+
+@mixin ui--text-shadow ($color: $text-color--default) {
+  text-shadow: 0.025rem 0 0 $color;
+}
