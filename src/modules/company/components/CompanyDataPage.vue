@@ -1,7 +1,8 @@
 <template>
-  <h2>page</h2>
+  <h2>Data</h2>
 </template>
 
 <script>
-  export default {}
+  export default {
+  }
 </script>
