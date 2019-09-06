@@ -1,6 +1,5 @@
 <template>
   <div>
-    <router-link to="/company-data">Company Data</router-link>
     <router-view></router-view>
   </div>
 </template>
@@ -10,3 +9,11 @@
 
   }
 </script>
+
+<style>
+  html, body {
+    color: var(--text-color--default);
+    font-family: var(--text-family--default);
+    font-size: var(--text-size--default);
+  }
+</style>

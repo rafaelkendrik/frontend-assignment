@@ -1,1 +1,14 @@
+$cont-color--default: #402d7a;
 
+$text-color--default: #515151;
+$text-color--main: #64599a;
+$text-color--secondary: #d4d6e3;
+$text-size--default: 1rem;
+$text-size--small: 0.95rem;
+$text-size--micro: 0.9rem;
+
+:root {
+  --text-color--default: #{$text-color--default};
+  --text-family--default: Roboto, Helvetica, sans-serif;
+  --text-size--default: 16px;
+}
