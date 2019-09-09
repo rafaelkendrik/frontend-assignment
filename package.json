@@ -12,7 +12,7 @@
     "predev": "npm run clean:build",
     "dev": "cross-env NODE_ENV=development ./node_modules/.bin/webpack-dev-server",
     "lint": "node_modules/.bin/eslint \"src/**/**.+(js|vue)\"",
-    "test": "node_modules/.bin/jest",
+    "test": "node_modules/.bin/jest --config .jestrc.js",
     "start": "npm run dev"
   },
   "keywords": [],
@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.5.5",
     "@vue/test-utils": "^1.0.0-beta.29",
     "autoprefixer": "^9.6.1",
-    "babel-core": "^6.26.3",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
