@@ -53,6 +53,7 @@
   }
 
   .Menu-item {
+    background-color: $cont-color--default;
     color: $text-color--main;
     display: block;
     font-size: $text-size--small;

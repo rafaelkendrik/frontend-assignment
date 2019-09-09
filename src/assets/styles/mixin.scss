@@ -3,7 +3,7 @@
 }
 
 @mixin ui--cont-border (
-  $size: 0.025rem,
+  $size: 1px,
   $direction: null,
   $color: $cont-color--accent
 ) {

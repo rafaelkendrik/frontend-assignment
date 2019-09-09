@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="Panel">
     <span>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Ut vitae ultrices nisi. Aenean ultricies magna et orci
@@ -174,6 +174,14 @@
 </script>
 
 <style lang="scss" scoped>
+  .Panel {
+    background-color: $cont-color--default;
+    padding: $cont-spaces--default;
+
+    @include ui--cont-border();
+    @include ui--cont-radius();
+  }
+
   $cont-sizeX--field: 25rem;
   $cont-sizeY--textarea: 7.5rem;
 
@@ -197,11 +205,6 @@
 
       @include ui--cont-border();
       @include ui--cont-radius();
-      @include ui--cont-shadow(
-        $text-color--default,
-        0.0125rem,
-        0.025rem
-      );
 
       &::placeholder {
         font-size: $text-size--small;

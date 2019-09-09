@@ -2,7 +2,7 @@
   <div class="Page">
     <Breadcrumb class="Page-breadcrumb"/>
     <Menu class="Page-menu"/>
-    <section class="Page-panel">
+    <section class="Page-panels">
       <router-view></router-view>
     </section>
   </div>
@@ -36,18 +36,14 @@
     width: 100%;
   }
 
-  .Page-panel {
+  .Page-panels {
     box-sizing: border-box;
     display: inline-block;
     margin-left: $cont-spaces--small;
-    padding: $cont-spaces--default;
     width: calc(
       100%
       - #{$cont-size--menu}
       - #{$cont-spaces--default}
     );
-
-    @include ui--cont-border();
-    @include ui--cont-radius();
   }
 </style>
