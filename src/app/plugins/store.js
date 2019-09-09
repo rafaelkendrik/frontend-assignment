@@ -5,7 +5,8 @@ const requireVueModules = require.context('@/', true, /data$/)
 const modules = requireVueModules
   .keys()
   .reduce((acc, filename) => {
-    const moduleName = filename.split('/')[1]
+    const filePaths = filename.split('/')
+    const moduleName = filePaths[filePaths.length - 2]
     const module = requireVueModules(filename)
 
     acc[moduleName] = module.default || module

@@ -10,6 +10,10 @@ export default [
     component: Home,
     children: [
       {
+        path: '/',
+        redirect: '/company-data'
+      },
+      {
         path: '/company-data',
         name: 'company-data',
         component: CompanyData

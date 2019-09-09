@@ -16,10 +16,11 @@
         id="company-data-name"
         ref="company-data-name"
         v-bind="titleMaskPattern"
-        v-model="company.name"
+        :value="company.name"
         :unmask="false"
         :required="true"
         placeholder="e.g. Your Company Name"
+        @accept="setName"
         @blur="handlePlaceholders"/>
 
       <label
@@ -31,9 +32,10 @@
         id="company-data-spend"
         ref="company-data-spend"
         v-bind="moneyMaskPattern"
-        v-model="company.spend"
+        :value="company.spend"
         :unmask="true"
         placeholder="e.g. $150,000"
+        @accept="setSpend"
         @blur="handlePlaceholders"/>
 
       <label
@@ -76,7 +78,7 @@
         placeholder="e.g. Good Tech Company"
         v-model="additionalNotes">{{ additionalNotes }}</textarea>
       <template slot="actions">
-        <button @click="setNotes">
+        <button @click="saveNotes">
           save
         </button>
       </template>
@@ -85,9 +87,9 @@
 </template>
 
 <script>
+  import { mapState, mapMutations } from 'vuex'
   import { VMask, handlePlaceholders, maskPatterns } from '@/libs/mask'
   import VModal from '@/components/common/VModal'
-  import { Company } from '@/modules/company/data/constructors'
 
   const MONEY_RANGE_DIVIDER = ' - '
 
@@ -98,11 +100,14 @@
     },
 
     data: () => ({
-      company: new Company(),
       additionalNotes: ''
     }),
 
     computed: {
+      ...mapState('company', [
+        'company'
+      ]),
+
       concatSpendAbility () {
         const { min, max } = this.company.spendAbility
 
@@ -130,6 +135,13 @@
     },
 
     methods: {
+      ...mapMutations('company', [
+        'setName',
+        'setNotes',
+        'setSpend',
+        'setSpendAbility'
+      ]),
+
       handlePlaceholders () {
         handlePlaceholders(
           this.$refs['company-data-spend'],
@@ -156,14 +168,9 @@
             .map(stringToNumber)
       },
 
-      setNotes () {
-        this.company.notes = this.additionalNotes
+      saveNotes () {
+        this.setNotes(this.additionalNotes)
         this.$refs.VModal.close()
-      },
-
-      setSpendAbility ({ min, max }) {
-        this.company.spendAbility.min = min
-        this.company.spendAbility.max = max
       }
     },
 
