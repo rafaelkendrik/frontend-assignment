@@ -34,12 +34,19 @@
   }
 
   a {
+    color: inherit;
     outline: none;
     text-decoration: none;
   }
 
+  ul {
+    padding: 0;
+  }
+
   .Breadcrumb {
+    color: $text-color--secondary;
     display: inline;
+    font-size: $text-size--micro;
     text-transform: uppercase;
 
     &:not(:last-child) {

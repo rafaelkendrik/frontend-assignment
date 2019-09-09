@@ -5,7 +5,7 @@
 @mixin ui--cont-border (
   $size: 0.025rem,
   $direction: null,
-  $color: $cont-color--default
+  $color: $cont-color--accent
 ) {
   $border: $size solid $color;
 
@@ -35,6 +35,15 @@
   }
 }
 
+@mixin ui--cont-shadow (
+  $color: $text-color--default,
+  $offset: 0.125rem,
+  $blur: 0.125rem
+) {
+  $softColor: #{$color}55;
+  box-shadow: $offset $offset $blur $softColor;
+}
+
 @mixin ui--text-shadow ($color: $text-color--default) {
-  text-shadow: 0.025rem 0 0 $color;
+  text-shadow: 0.005em 0 0 $color;
 }

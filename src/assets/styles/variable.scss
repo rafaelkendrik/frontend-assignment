@@ -1,18 +1,25 @@
-$cont-color--default: #d4d6e3;
+$cont-color--default: #ffffff;
+$cont-color--accent: #d4d6e3;
 $cont-color--main: #402d7a;
 $cont-radius--default: 0.25rem;
+$cont-spaces--micro: 0.5rem;
+$cont-spaces--small: 1rem;
+$cont-spaces--default: 1.5rem;
+$cont-spaces--large: 2rem;
 
 $text-color--default: #515151;
 $text-color--main: #64599a;
-$text-color--secondary: #d4d6e3;
+$text-color--secondary: #b0b0b0;
 $text-size--default: 1rem;
 $text-size--small: 0.9rem;
 $text-size--micro: 0.85rem;
+$text-spaces--nano: 0.25rem;
+$text-spaces--micro: 0.5rem;
 $text-spaces--default: 1rem;
 $text-spaces--large: 1.5rem;
 
 :root {
   --text-color--default: #{$text-color--default};
   --text-family--default: Roboto, Helvetica, sans-serif;
-  --text-size--default: 16px;
+  --text-size--default: calc(1vw + 0.45vh);
 }

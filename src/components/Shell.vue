@@ -15,5 +15,8 @@
     color: var(--text-color--default);
     font-family: var(--text-family--default);
     font-size: var(--text-size--default);
+
+    box-sizing: border-box;
+    margin: 0;
   }
 </style>
