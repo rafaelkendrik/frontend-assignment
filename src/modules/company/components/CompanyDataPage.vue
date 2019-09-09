@@ -33,7 +33,6 @@
         v-bind="moneyMaskPattern"
         v-model="company.spend"
         :unmask="true"
-        :required="true"
         placeholder="e.g. $150,000"
         @blur="handlePlaceholders"/>
 
@@ -48,31 +47,59 @@
         v-bind="moneyRangeMaskPattern"
         :value="concatSpendAbility"
         :unmask="false"
-        :required="true"
         placeholder="e.g. $150,000 - $330,000"
         @accept="handleSpendAbility"
         @blur="handlePlaceholders"/>
     </form>
 
-    <textarea readonly>
+    <label
+      class="Form-item-label"
+      for="company-data-notes">
+      notes
+    </label>
+    <textarea
+      id="company-data-notes"
+      class="Form-textarea"
+      placeholder="e.g. Good Tech Company"
+      :readonly="true"
+      @click="openModal">{{ company.notes }}</textarea>
 
-    </textarea>
+    <VModal ref="VModal">
+      <label
+        class="Form-item-label"
+        for="company-data-additional-notes">
+        additional notes
+      </label>
+      <textarea
+        id="company-data-additional-notes"
+        class="Form-textarea"
+        placeholder="e.g. Good Tech Company"
+        v-model="additionalNotes">{{ additionalNotes }}</textarea>
+      <template slot="actions">
+        <button @click="setNotes">
+          save
+        </button>
+      </template>
+    </VModal>
   </div>
 </template>
 
 <script>
   import { VMask, handlePlaceholders, maskPatterns } from '@/libs/mask'
+  import VModal from '@/components/common/VModal'
   import { Company } from '@/modules/company/data/constructors'
 
   const MONEY_RANGE_DIVIDER = ' - '
 
   export default {
     components: {
-      VMask
+      VMask,
+      VModal
     },
 
     data: () => ({
-      company: new Company()
+      company: new Company(),
+      additionalNotes: ''
     }),
 
     computed: {
@@ -116,6 +143,10 @@
         this.setSpendAbility({ min, max })
       },
 
+      openModal () {
+        this.$refs.VModal.open()
+      },
+
       splitSpendAbility (concatSpendAbility) {
         const stringToNumber = str =>
           str.replace(/[^\d]/g, '')
@@ -123,6 +154,11 @@
         return concatSpendAbility
             .split(MONEY_RANGE_DIVIDER)
             .map(stringToNumber)
+      },
+
+      setNotes () {
+        this.company.notes = this.additionalNotes
+        this.$refs.VModal.close()
       },
 
       setSpendAbility ({ min, max }) {
@@ -138,9 +174,53 @@
 </script>
 
 <style lang="scss" scoped>
+  $cont-sizeX--field: 25rem;
+  $cont-sizeY--textarea: 7.5rem;
+
   .Form-item-label {
     color: $text-color--secondary;
     cursor: pointer;
+    display: table;
+    font-size: $text-size--micro;
+    padding-bottom: $text-spaces--nano;
+    padding-top: $text-spaces--default;
     text-transform: uppercase;
+
+    @include ui--text-shadow($text-color--secondary);
+
+    & + * {
+      background-color: $cont-color--default;
+      box-sizing: border-box;
+      max-width: 100%;
+      min-width: $cont-sizeX--field;
+      padding: $text-spaces--micro;
+
+      @include ui--cont-border();
+      @include ui--cont-radius();
+      @include ui--cont-shadow(
+        $text-color--default,
+        0.0125rem,
+        0.025rem
+      );
+
+      &::placeholder {
+        font-size: $text-size--small;
+        opacity: 0.25;
+      }
+    }
+  }
+
+  .Form-textarea {
+    box-sizing: border-box;
+    display: block;
+    height: $cont-sizeY--textarea;
+    max-width: 100%;
+    min-width: $cont-sizeX--field;
+    resize: none;
+    width: 100%;
+
+    &:read-only {
+      cursor: pointer;
+    }
   }
 </style>

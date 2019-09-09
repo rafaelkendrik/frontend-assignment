@@ -2,11 +2,13 @@ class Company {
   constructor(company = {}) {
     const {
       name = '',
+      notes = '',
       spend = '',
       spendAbility = {}
     } = company
 
     this.name = name
+    this.notes = notes
     this.spend = spend
     this.spendAbility = new SpendAbility(spendAbility)
   }
